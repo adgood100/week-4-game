@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<title>Star Wars</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css"> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <!-- Bootstrap Files -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+<body>
+
+  <!-- Overall Bootstrap Grid -->
+  <div class="container">
+
+    <!-- Jumbotron with Title -->
+    <div class="jumbotron">
+      <h1 class="text-center"><strong>Star Wars</strong></h1>
+
+    </div> 
+	
+	<div class="row">
+		<div class="col-lg-12">
+		<!-- Display gallery of players you can choose from -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Player's Board</h3>
+				</div>
+				<div class="panel-body">
+					<div class="text-center">				
+					<div class="container-title">Choose Your Challengers</div>			
+					<div class='side-container'></div>
+					<div id="picture-display"  style='margin-right: 10px;'>
+					</div>										  
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+		<!-- Display battle field -->
+		<div class='row'>
+			<div class="panel panel-default">
+
+				<div class="panel-body">
+
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+		<!-- Display battle field -->
+		<div class='row'>
+			<div class="panel panel-default">
+
+				<div class="panel-body">
+
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	
+    <div class="row">
+		<div class="col-lg-12">
+		<!-- Display gallery of players you can choose from -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Player's Board</h3>
+
+          </div>
+          <div class="panel-body">
+            <div class="text-center">				
+				<div class="container-title">Choose Your Challengers</div>			
+				<div class='side-container'></div>
+				<div id="picture-display"  style='margin-right: 10px;'>
+				</div>
+									  
+            </div>
+          </div>
+        </div>
+		</div>
+      <!-- Left Panel -->
+      <div class="col-lg-6">
+
+        <!-- Display Letters You have Guessed -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">You Guessed these Letters!</h3>
+          </div>
+          <div class="panel-body">
+            <div class="text-center">
+
+				<div class='side-container'>
+					<div class='container-title'>Guessed Letters</div>
+					<div id="wrong-letters" class='input-area'></div>
+				</div>
+									  
+            </div>
+          </div>
+        </div>
+
+        <!-- Display Game Stats -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Games Scoreboard!</h3>
+          </div>
+          <div class="panel-body" style="margin: auto;">
+            <div class="text-center">
+			<div class='side-container pull-left'>
+				<div class='container-title'>Games Won</div>
+				<div id='wins-display' class='input-area'></div>
+			</div>
+			<div class='side-container'>
+				<div class='container-title'>Games Lost</div>
+				<div id='losses-display' class='input-area'></div>
+			</div>
+	
+            </div>
+          </div>
+        </div>
+ 
+ <!-- Display Character quotes for hints -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Do you need a hint?</h3>
+          </div>
+          <div class="panel-body">
+            <div class="text-center">
+<!--				<div class="container-title">Hint?</div>  -->
+				<button id="startGame" type="button" class="btn btn-info">Start Game!</button> <br>
+				<div id="hint-display" class='input-area' style='height: auto;'>
+				</div>
+				<br>
+<!--				<img src="assets/images/silhouettequestionmark.jpg"> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Display gallery of characters you have guessed -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Hero's Board</h3>
+
+          </div>
+          <div class="panel-body">
+            <div class="text-center">				
+				<div class="container-title">Hero's Stats</div>			
+				<div class='side-container'></div>
+				<div id="picture-display" class='input-area' style='height: auto; width: auto;'>
+				</div>
+									  
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Display Game Word Puzzle -->
+      <div class="col-lg-6">
+		
+		<div class='hang-container-right'>
+<!--			<div class='hang-container'>
+			<div class='scaffolding-top'></div>
+			<div class='scaffolding-left'></div>
+
+			<div class='draw-area'>
+				<div class='rope'></div>
+			</div>
+
+			<div class='scaffolding-base'></div>
+			<br> <br> 
+			</div>
+
+			<div class="panel panel-default" style="border: 0px;">
+				<div class ="panel-body">
+				</div>
+			</div>
+-->
+			<!-- Display the Randomly Selected Word Here -->
+
+			<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Can You Guess the Word?</h3>
+			</div>
+			<div class="panel-body">
+				<div class="text-center">
+
+				<div class='word-box'>
+					<div class='word-display'>
+					</div>
+					<br> <br>
+					<!-- Enter Your Guess Here-->
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h3 class="panel-title">Enter Your Guesses Here!</h3>
+					  </div>
+					  <div class="panel-body">
+						<div class="text-center">
+							<div class='side-container'>
+
+								<div class='container-title'>Guess A Letter!</div>
+								<div class='input-area'>
+										<input id='letter-input' type='text' maxlength='1'/>
+								</div>
+								
+							</div>
+
+						</div>
+					  </div>
+					</div>
+
+				</div>
+												  
+				</div>
+			</div>
+			<!-- Display gallery of characters you have guessed -->
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h3 class="panel-title">Opponents's Board</h3>
+
+			  </div>
+			  <div class="panel-body">
+				<div class="text-center">				
+					<div class="container-title">Opponent's Stats</div>			
+					<div class='side-container'></div>
+					<div id="picture-display" class='input-area' style='height: auto; width: auto;'>
+					</div>
+										  
+				</div>
+			  </div>
+			</div>
+      </div>
+
+			</div>
+
+		</div>
+				
+      </div>
+    </div>
+	
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
+
+</body>
+<script src='assets/javascript/game.js'></script>
+</html>
