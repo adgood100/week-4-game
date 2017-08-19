@@ -2,15 +2,26 @@ body {
     font-family:sans-serif; 
     font-weight:bold; 
     font-size:16pt;
-/*	background: url("../images/gamelayout.png") no-repeat; */
-	background-size: 100%;
+	background: url("../images/starfield.jpg") no-repeat;
+	background-size: 100% 100%;
+	
 	margin: 0;
 	padding: 0;
 }
 
+.scoreBoard {
+	font: 16px;
+	padding: 5px;
+	margin: auto;
+}
+
+.panel {
+	font: 16px;
+}
+
 .battle-ground-container {
 	background-image: url("../images/starfield.jpg") no-repeat;
-	height: 350px;
+/*	height: 200px; */
 	margin: 0px;
 	padding: 0px;
 }
@@ -44,9 +55,9 @@ footer {
 }
 .side-container {
 /*    margin-top:45px; */
-/*    margin-left:130px; */
-	margin: auto;
-    width:170px;
+    margin-left:20px; 
+/*	margin: auto; */
+/*    width:150px; */
     text-align:center;
 /*	background-color: pink; */
 }
@@ -93,19 +104,19 @@ footer {
     border-radius:15px;
 }
 #hint-display {
-    width: 450px;
-	margin: auto;
+    float: right;
+	margin: 0 30px 0 30px;
 	background:#e6f9ff;
     border:1px #6f5a2d solid;
-    height:31px;
+	width: auto;
     padding:3pt;	
-	visibility: hidden;
     -moz-border-radius:15px;
     -webkit-border-radius:15px;
     border-radius:15px;
 }
 #wins-display {
     background:#e6f9ff;
+	font-size: 16px;
 /*    border:1px #6f5a2d solid; */
     height:31px;
     padding:3pt;
@@ -122,6 +133,64 @@ footer {
     -webkit-border-radius:15px;
     border-radius:15px;
 }
+#health-display {
+    background:#e6f9ff;
+/*    border:1px #6f5a2d solid; */
+    height:31px;
+    padding:3pt;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+#attack-display {
+    background:#e6f9ff;
+/*    border:1px #6f5a2d solid; */
+    height:31px;
+    padding:3pt;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+#your-wins-display {
+    background:#e6f9ff;
+/*    border:1px #6f5a2d solid; */
+    height:31px;
+
+	padding:3pt;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+#your-losses-display {
+    background:#e6f9ff;
+/*    border:1px #6f5a2d solid; */
+    height:31px;
+
+	padding:3pt;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+#your-health-display {
+    background:#e6f9ff;
+/*    border:1px #6f5a2d solid; */
+    height:31px;
+
+	padding:3pt;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+#counter-display {
+    background:#e6f9ff;
+/*    border:1px #6f5a2d solid; */
+    height:31px;
+
+	padding:3pt;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
 #picture-display {
 /*    background:#e6f9ff; */
 /*    border:1px #6f5a2d solid; */
@@ -130,6 +199,14 @@ footer {
     -webkit-border-radius:15px;
     border-radius:15px;
 }
+
+#vanquished-display {
+	padding:3pt;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+}
+
 img {
   width: 88px;
   height: 88px;
@@ -164,18 +241,64 @@ img {
     margin: 0 2px;
     color:#1c2025;
 }
+
 .shown-wins {
 /*    border-bottom: 3px #000 solid; */
     padding: 0 2px;
     margin: 0 2px;
     color:#1c2025;
 }
+
 .shown-losses {
 /*    border-bottom: 3px #000 solid; */
     padding: 0 2px;
     margin: 0 2px;
     color:#1c2025;
 }
+
+.shown-health {
+/*    border-bottom: 3px #000 solid; */
+    padding: 0 2px;
+    margin: 0 2px;
+    color:#1c2025;
+}
+
+.shown-attack {
+/*    border-bottom: 3px #000 solid; */
+    padding: 0 2px;
+    margin: 0 2px;
+    color:#1c2025;
+}
+
+.shown-your-wins {
+/*    border-bottom: 3px #000 solid; */
+    padding: 0 2px;
+    margin: 0 2px;
+    color:#1c2025;
+}
+
+.shown-your-losses {
+/*    border-bottom: 3px #000 solid; */
+    padding: 0 2px;
+    margin: 0 2px;
+    color:#1c2025;
+}
+
+.shown-your-health {
+/*    border-bottom: 3px #000 solid; */
+    padding: 0 2px;
+    margin: 0 2px;
+    color:#1c2025;
+}
+
+.shown-counter {
+/*    border-bottom: 3px #000 solid; */
+    padding: 0 2px;
+    margin: 0 2px;
+    color:#1c2025;
+}
+
+
 /* Hangman Area */
 .hang-container {
 	margin-top:-10px;
@@ -311,10 +434,21 @@ img {
     width: 75px;
   }
   
-    #startGame {
-    margin-left: 0;
-    font-size: 25px;
+ #startGame {
+
     color: black;
     border-style: solid;
-    width: 75px;
+ 
+  }
+ #nextRound {
+
+    color: black;
+    border-style: solid;
+ 
+  }
+ #resetGame {
+
+    color: black;
+    border-style: solid;
+ 
   }

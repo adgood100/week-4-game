@@ -1,5 +1,12 @@
 var myWins = 0;
 var myLosses = 0;
+var myHealth = 0;
+var myAttack = 0;
+var yourWins = 0;
+var yourLosses = 0;
+var yourHealth = 0;
+var yourCounter = 0;
+var firstChallenger = 0;
 var winImage = "";
 var lossImage = "";
 var hintValue = "";
@@ -91,7 +98,7 @@ function doKeypress () {
             myWins = myWins + 1;
 /*			$( "#toggle" ).attr( "style", "visibility: visible;" ); */
 			dsplWinnerBoard();
-			drawWins(myWins);
+			drawMyWins(myWins);
 			win();
         }
     } else {
@@ -99,7 +106,7 @@ function doKeypress () {
         drawSequence[ hangmanState++ ]();
         if ( hangmanState === drawSequence.length ) {
             myLosses = myLosses + 1;
-			drawLosses(myWins);
+			drawMyLosses(myWins);
 			lose();
         }
     }  
@@ -161,8 +168,14 @@ function resetUI () {
 	$('.shown-losses').remove();
 	$('.shown-hint').remove();
 /*	$('.shown-picture').remove(); */
-	drawWins(myWins);
-	drawLosses(myLosses);
+	drawMyWins(myWins);
+	drawMyLosses(myLosses);
+	drawMyHealth(myHealth);
+	drawMyAttack(myAttack);
+	drawYourWins(yourWins);
+	drawYourLosses(yourLosses);
+	drawYourHealth(yourHealth);
+	drawYourCounter(yourCounter);
 	dsplWinnerBoard();
 }
 function drawWord( answer ) {
@@ -180,16 +193,52 @@ function drawHints( hintValue ) {
 	};
 
 }
-function drawWins( myWins ) {
+function drawMyWins( myWins ) {
     
 	$('#wins-display').append(
 	    $('<span/>').addClass('shown-wins').text(myWins));
     
 }
-function drawLosses( myLosses ) {
+function drawYourWins( yourWins ) {
+    
+	$('#your-wins-display').append(
+	    $('<span/>').addClass('shown-your-wins').text(yourWins));
+    
+}
+function drawMyLosses( myLosses ) {
     
 	$('#losses-display').append(
 	    $('<span/>').addClass('shown-losses').text(myLosses));
+    
+}
+function drawYourLosses( yourLosses ) {
+    
+	$('#your-losses-display').append(
+	    $('<span/>').addClass('shown-your-losses').text(yourLosses));
+    
+}
+function drawMyHealth( myHealth ) {
+    
+	$('#health-display').append(
+	    $('<span/>').addClass('shown-health').text(myHealth));
+    
+}
+function drawMyAttack( myAttack ) {
+    
+	$('#attack-display').append(
+	    $('<span/>').addClass('shown-attack').text(myAttack));
+    
+}
+function drawYourHealth( yourHealth ) {
+    
+	$('#your-health-display').append(
+	    $('<span/>').addClass('shown-your-health').text(yourHealth));
+    
+}
+function drawYourCounter( yourCounter ) {
+    
+	$('#counter-display').append(
+	    $('<span/>').addClass('shown-counter').text(yourCounter));
     
 }
 function drawPicture( myPicture ) {
@@ -208,6 +257,22 @@ function loadPlayerBoard() {
 		
 }
 
+function pickChallengers() {
+	firstChallenger++;
+	if (firstChallenger === 1) {
+		
+		for (var i = 0; i < toggle.length; i++) {
+		$('#toggle').apend (
+			$('#hero-display').html(toggle[i]));
+		}
+	} else if (firstChallenger === 2) {
+		
+		$('#toggle').apend (
+			$('#opponent-display').html(this.toggle));
+}			
+		
+
+}
 function updateWord( answer ) {
     $k = $('.shown-letter:first');
     for ( i in answer ) {
@@ -269,20 +334,20 @@ var hints = ['THE MAN WHO PASSES THE SENTENCE SHOULD SWING THE SWORD.',
 			 'OLLY, BRING ME MY SWORD.',
 			 'HE ALWAYS COMES BACK!']; 
 
-var himgs = [' <img id="toggle" src="assets/images/reyskywalker.png" style="width: 48; height: 48; "> ',
-			 ' <img id="toggle" src="assets/images/jynerso.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" src="assets/images/finn.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" src="assets/images/PoeDameron180.jpg" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" src="assets/images/hanssolo.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" src="assets/images/chewbacca.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" src="assets/images/stormtrooper.jpg" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" src="assets/images/TopStormTrooper.jpg" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" src="assets/images/supremeleadersnoke.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" src="assets/images/generalhux.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" src="assets/images/darthvader.jpg" style="width: 48; height: 48;" > ']; 
+var himgs = [' <img id="toggle" onclick="pickChallengers()" src="assets/images/reyskywalker.png" style="width: 48; height: 48; "> ',
+			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/jynerso.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/finn.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/PoeDameron180.jpg" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/hanssolo.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/chewbacca.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/stormtrooper.jpg" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/TopStormTrooper.jpg" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/supremeleadersnoke.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/generalhux.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/darthvader.jpg" style="width: 48; height: 48;" > ']; 
+			
 
-
-			 
+			
 function chooseWord () {
     return words[Math.floor(Math.random() * words.length)];
 }
