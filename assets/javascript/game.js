@@ -11,6 +11,8 @@ var winImage = "";
 var lossImage = "";
 var hintValue = "";
 var hintPicture = "";
+var heroindx;
+var opponentindx;
 
 //Star Wars Variables
 //var player = {
@@ -58,6 +60,7 @@ function startGame () {
 	resetPlayerStats(); 	// Step 2 Reset player stats to zero
 	setPlayerPoints(); 		// Step 3 Allocate player health points, attack power and counter attack power
 	loadPlayerBoard();		// Step 4 Load player thumbnails on player board
+	loadPlayerHealth();
 }
 
 function resetPlayerStats() {
@@ -257,19 +260,38 @@ function loadPlayerBoard() {
 		
 }
 
-function pickChallengers() {
+function loadPlayerHealth() {
+    
+	for (var i = 0; i < himgs.length; i++) {
+		var playerHealthPoints = Math.floor((Math.random() * 250) + 50);
+		$('#stat-display').html('<p style:"color: white; font-size: 16px;">Health Pts: </p>' + himgs.playerHealthPoints);
+	
+}
+}
+function pickChallengers(ndx) {
 	firstChallenger++;
+	console.log("value of " + ndx);
+	console.log("value of " + toggle[heroindx]);
+	heroindx = ndx;
+	i = ndx;
+//	for (var i = 0; i < toggle.length; i++) { //
 	if (firstChallenger === 1) {
-		
+
 		for (var i = 0; i < toggle.length; i++) {
-		$('#toggle').apend (
-			$('#hero-display').html(toggle[i]));
-		}
+			if (i === ndx) {
+				$('#hero-display').html(toggle[i]);
+			}
+		}	 
 	} else if (firstChallenger === 2) {
 		
-		$('#toggle').apend (
-			$('#opponent-display').html(this.toggle));
-}			
+		for (var i = 0; i < toggle.length; i++) {
+			if (i === ndx) {
+				$('#opponent-display').html(toggle[i]);
+			}
+		}
+			
+	}
+//}	//		
 		
 
 }
@@ -317,6 +339,18 @@ var players = ['Rey Skywalker',
 			 'General Hux', 
 			 'Darth Vadr'];
 
+var healthPoints = ['<p style="color: white; font-size: 16px;">Health Points: </p>', 
+					'<p style="color: white; font-size: 16px;">Health Points: </p>', 
+					'<p style="color: white; font-size: 16px;">Health Points: </p>', 
+					'<p style="color: white; font-size: 16px;">Health Points: </p>', 
+					'<p style="color: white; font-size: 16px;">Health Points: </p>', 
+					'<p style="color: white; font-size: 16px;">Health Points: </p>', 
+					'<p style="color: white; font-size: 16px;">Health Points: </p>', 
+					'<p style="color: white; font-size: 16px;">Health Points: </p>', 
+					'<p style="color: white; font-size: 16px;">Health Points: </p>', 
+					'<p style="color: white; font-size: 16px;">Health Points: </p>', 
+					'<p style="color: white; font-size: 16px;">Health Points: </p>'];
+
 			 
 var hints = ['THE MAN WHO PASSES THE SENTENCE SHOULD SWING THE SWORD.',
 			 'THE THINGS I DO FOR LOVE.',
@@ -334,17 +368,17 @@ var hints = ['THE MAN WHO PASSES THE SENTENCE SHOULD SWING THE SWORD.',
 			 'OLLY, BRING ME MY SWORD.',
 			 'HE ALWAYS COMES BACK!']; 
 
-var himgs = [' <img id="toggle" onclick="pickChallengers()" src="assets/images/reyskywalker.png" style="width: 48; height: 48; "> ',
-			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/jynerso.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/finn.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/PoeDameron180.jpg" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/hanssolo.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/chewbacca.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/stormtrooper.jpg" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/TopStormTrooper.jpg" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/supremeleadersnoke.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/generalhux.png" style="width: 48; height: 48;" > ',
-			 ' <img id="toggle" onclick="pickChallengers()" src="assets/images/darthvader.jpg" style="width: 48; height: 48;" > ']; 
+var himgs = [' <img id="toggle" onclick="pickChallengers(0)" src="assets/images/reyskywalker.png" style="width: 48; height: 48; "> ',
+			 ' <img id="toggle" onclick="pickChallengers(1)" src="assets/images/jynerso.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers(2)" src="assets/images/finn.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers(3)" src="assets/images/PoeDameron180.jpg" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers(4)" src="assets/images/hanssolo.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers(5)" src="assets/images/chewbacca.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers(6)" src="assets/images/stormtrooper.jpg" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers(7)" src="assets/images/TopStormTrooper.jpg" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers(8)" src="assets/images/supremeleadersnoke.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers(9)" src="assets/images/generalhux.png" style="width: 48; height: 48;" > ',
+			 ' <img id="toggle" onclick="pickChallengers(10)" src="assets/images/darthvader.jpg" style="width: 48; height: 48;" > ']; 
 			
 
 			
@@ -387,89 +421,3 @@ function guessLetter( letter, shown, answer ) {
     return shown;
 }
 
-// --- END rules ---
-// ---
-// ---
-// --- BGN KEYBRD ---
-
-	function showKeyboard () {
-      // Here we are provided an initial array of letters.
-      // Use this array to dynamically create buttons on the screen.
-      var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
-
-
-      // MAJOR TASK #1: DYNAMICALLY CREATE BUTTONS
-      // =================================================================================
-
-      // 1. Create a for-loop to iterate through the letters array.
-      for (var i = 0; i < letters.length; i++) {
-
-        // Inside the loop...
-
-        // 2. Create a variable named "letterBtn" equal to $("<button>");
-        var letterBtn = $("<button>");
-
-        // 3. Then give each "letterBtn" the following classes: "letter-button" "letter" "letter-button-color".
-        letterBtn.addClass("letter-button letter letter-button-color");
-
-        // 4. Then give each "letterBtn" a data-attribute called "data-letter".
-        letterBtn.attr("data-letter", letters[i]);
-
-        // 5. Then give each "letterBtns" a text equal to "letters[i]".
-        letterBtn.text(letters[i]);
-
-        // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
-        $("#buttons").append(letterBtn);
-
-      }
-
-      // Be sure to test that your code works for this major task, before proceeding to the next one!
-      // MAJOR TASK #2: ATTACH ON-CLICK EVENTS TO "LETTER" BUTTONS
-      // =================================================================================
-
-      // 7. Create an "on-click" event attached to the ".letter-button" class.
-	  $(".letter-button").click(buttonClicked);
-  //    $(".letter-button").on("click", function() {
-	  
-		function buttonClicked() {
-        // Inside the on-click event...
-
-        // 8. Create a variable called "fridgeMagnet" and set the variable equal to a new div.
-			var fridgeMagnet = $("<div>");
-
-        // 9. Give each "fridgeMagnet" the following classes: "letter fridge-color".
-			fridgeMagnet.addClass("letter fridge-color");
-
-        // 10. Then chain the following code onto the "fridgeMagnet" variable: .text($(this).attr("data-letter"))
-        // attr acts as both a setter and a getter for attributes depending on whether we supply one argument or two
-        // NOTE: There IS a $(data) jQuery method, but it doesn't do what you'd expect. So just use attr.
-			fridgeMagnet.text($(this).attr("data-letter"));
-
-        // 11. Lastly append the fridgeMagnet variable to the "#display" div (provided);
-			$("#display").append(fridgeMagnet);
-		}
-      
-
-      // Be sure to test that your code works for this major task, before proceeding to the next one!
-
-      // MAJOR TASK #3: ATTACH ON-CLICK EVENTS TO "CLEAR" BUTTON
-      // =================================================================================
-
-      // 12. Create an "on-click" event attached to the "#clear" button id.
-	  $("#hint").click(drawHints); 
-	  $("#clear").click(clearButton); 
-	  
-	  function clearButton () {
-
-        // Inside the on-click event...
-
-        // 13. Use the jQuery "empty()" method to clear the contents of the "#display" div.
-        $("#display").empty();
-		resetUI();  // 0. Start game and reset reset() from ui
-
-      }
-	}
-
-
-// --- END KEYBRD ---
-// ---
