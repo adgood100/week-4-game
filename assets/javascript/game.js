@@ -262,9 +262,11 @@ function loadPlayerBoard() {
 
 function loadPlayerHealth() {
     
-	for (var i = 0; i < himgs.length; i++) {
-		var playerHealthPoints = Math.floor((Math.random() * 250) + 50);
-		$('#stat-display').html('<p style:"color: white; font-size: 16px;">Health Pts: </p>' + himgs.playerHealthPoints);
+	for (var i = 0; i < players.length; i++) {
+//		var playerHealthPoints = Math.floor((Math.random() * 250) + 50);
+//		console.log('this is value of playerHealthPoints: ' + playerHealthPoints);
+		$('#stat-display').append (
+		$('<span/>').addClass('shown-picture pull-left').html('<p style:"color: white; font-size: 16px;">HP/AP </p>' + players[i].hp + "/" + players[i].ap));
 	
 }
 }
@@ -315,29 +317,31 @@ function updateWord( answer ) {
 
 // This array holds the players to choose from.
 // ------Add new words!
-var words = ['Rey Skywalker', 
-			 'Jyn Erso', 
-			 'Finn', 
-			 'Poe Dameron', 
-			 'Hans Solo', 
-			 'Chewbacca', 
-			 'Storm Trooper', 
-			 'Top Storm Trooper', 
-			 'Supreme Leader Snoke', 
-			 'General Hux', 
-			 'Darth Vadr'];
+var words = [
+			{name:'Rey Skywalker', hp:169, ap:123},
+			{name:'Jyn Erso', hp:143, ap:123}, 
+			{name:'Finn', hp:196, ap:123}, 
+			{name:'Poe Dameron', hp:143, ap:123}, 
+			{name:'Hans Solo', hp:259, ap:123}, 
+			{name:'Chewbacca', hp:54, ap:123}, 
+			{name:'Storm Trooper', hp:110, ap:123}, 
+			{name:'Top Storm Trooper', hp:243, ap:123}, 
+			{name:'Supreme Leader Snoke', hp:154, ap:123}, 
+			{name:'General Hux', hp:184, ap:123}, 
+			{name:'Darth Vadr', hp:87, ap:123}]
 
-var players = ['Rey Skywalker', 
-			 'Jyn Erso', 
-			 'Finn', 
-			 'Poe Dameron', 
-			 'Hans Solo', 
-			 'Chewbacca', 
-			 'Storm Trooper', 
-			 'Top Storm Trooper', 
-			 'Supreme Leader Snoke', 
-			 'General Hux', 
-			 'Darth Vadr'];
+var players = [
+			{name:'Rey Skywalker', pix:' <img id="toggle" onclick="pickChallengers(0)" src="assets/images/reyskywalker.png" style="width: 48; height: 48; "> ', hp:169, ap:272},
+			{name:'Jyn Erso', pix:' <img id="toggle" onclick="pickChallengers(1)" src="assets/images/jynerso.png" style="width: 48; height: 48;" > ', hp:143, ap:212}, 
+			{name:'Finn', pix:' <img id="toggle" onclick="pickChallengers(2)" src="assets/images/finn.png" style="width: 48; height: 48;" > ', hp:196, ap:52}, 
+			{name:'Poe Dameron', pix:' <img id="toggle" onclick="pickChallengers(3)" src="assets/images/PoeDameron180.jpg" style="width: 48; height: 48;" > ', hp:143, ap:73}, 
+			{name:'Hans Solo', pix:' <img id="toggle" onclick="pickChallengers(4)" src="assets/images/hanssolo.png" style="width: 48; height: 48;" > ', hp:259, ap:156}, 
+			{name:'Chewbacca', pix:' <img id="toggle" onclick="pickChallengers(5)" src="assets/images/chewbacca.png" style="width: 48; height: 48;" > ', hp:54, ap:277}, 
+			{name:'Storm Trooper', pix:' <img id="toggle" onclick="pickChallengers(6)" src="assets/images/stormtrooper.jpg" style="width: 48; height: 48;" > ', hp:110, ap:226}, 
+			{name:'Top Storm Trooper', pix:' <img id="toggle" onclick="pickChallengers(7)" src="assets/images/TopStormTrooper.jpg" style="width: 48; height: 48;" > ', hp:243, ap:257}, 
+			{name:'Supreme Leader Snoke', pix:' <img id="toggle" onclick="pickChallengers(8)" src="assets/images/supremeleadersnoke.png" style="width: 48; height: 48;" > ', hp:154, ap:78}, 
+			{name:'General Hux', pix:' <img id="toggle" onclick="pickChallengers(9)" src="assets/images/generalhux.png" style="width: 48; height: 48;" > ', hp:184, ap:165}, 
+			{name:'Darth Vadr', pix:' <img id="toggle" onclick="pickChallengers(10)" src="assets/images/darthvader.jpg" style="width: 48; height: 48;" > ', hp:87, ap:97}]
 
 var healthPoints = ['<p style="color: white; font-size: 16px;">Health Points: </p>', 
 					'<p style="color: white; font-size: 16px;">Health Points: </p>', 

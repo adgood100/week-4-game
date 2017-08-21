@@ -114,6 +114,10 @@ footer {
     -webkit-border-radius:15px;
     border-radius:15px;
 }
+#stat-display{
+	color: white;
+	margin: 20px;
+}
 #wins-display {
     background:#e6f9ff;
 	font-size: 16px;
