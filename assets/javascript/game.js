@@ -149,6 +149,7 @@ function resetUI () {
 	$('.opponent-display').remove();
 	$('.shown-vanquished').remove();
 	$('.shown-health').remove();
+	$('.challengers').remove();
 	drawMyWins(myWins);
 	drawMyLosses(myLosses);
 	drawMyHealth(myHealth);
