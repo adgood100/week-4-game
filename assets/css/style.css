@@ -260,6 +260,14 @@ img {
 	border-radius: 5px;
 	color: white;
 }
+
+.shown-vanquished {
+	padding:3pt;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+}
+
 .shown-hint {
 /*    border-bottom: 3px #000 solid; */
     padding: 0 2px;
@@ -323,142 +331,8 @@ img {
     color:#1c2025;
 }
 
-
-/* Hangman Area */
-.hang-container {
-	margin-top:-10px;
-    margin-right: 110px; 
-    width:200px;
-    height:205px;
-    float:right;
-}
-.scaffolding-top {
-    width:108px;
-    height:5px;
-    background: #332915;
-}
-.scaffolding-left {
-    width:5px;
-    height:200px;
-    background:#332915;
-    float:left;
-}
-.scaffolding-base {
-    width:150px;
-    height:5px;
-    background:#332915;
-}
-.draw-area {
-    width:200px;
-    height:200px;
-    text-align:center;
-}
-.rope {
-    margin:auto;
-    height:25px;
-    width:5px;
-    background:#a59885;
-}
-.head {
-    margin:auto;
-    height:30px;
-    width:30px;
-    background:#000;
-    -webkit-border-radius: 15px;
-    -moz-border-radius:15px;
-    border-radius:15px;
-}
-.armbox {
-    margin:auto;
-    width:100px;
-}
-.leftarm {
-    float:left;
-    height:10px;
-    width:45px;
-    background:#000;
-}
-.rightarm {
-    float:right;
-    height:10px;
-    width:45px;
-    background:#000;
-}
-.torso {
-    margin:auto;
-    width:10px;
-    height:50px;
-    background:#000;
-}
-.legbox {
-    margin:auto;
-    height:60px;
-    width:30px;
-}
-.leftleg {
-    float:left;
-    width:10px;
-    height:60px;
-    background:#000;
-}
-.rightleg {
-    float:right;
-    width:10px;
-    height:60px;
-    background:#000;
-}
-.pelvis {
-    margin:auto;
-    height:10px;
-    width:10px;
-    background:#000;
-}
-
 /* Adding Button Style from Fridge Class Assignment */ 
-  .letter {
-    width: 30px;
-    height: 30px;
-    border-style: solid;
-    padding: 2px;
-    float: left;
-    margin: 2px;
-  }
-
-  .letter-button-color {
-    color: darkcyan;
-  }
-
-  .fridge-color {
-    color: orange;
-  }
-
-  #display {
-    margin-top: 35px;
-    height: 150px;
-    width: 220px;
-    margin-left: 60px;
-  }
-
-  #buttons {
-    padding-top: 60px;
-  }
-
-  #clear {
-    margin-left: 20px;
-    font-size: 25px;
-    color: black;
-    border-style: solid;
-    width: 100px;
-  }
-
-  #hint {
-    margin-left: 0;
-    font-size: 25px;
-    color: black;
-    border-style: solid;
-    width: 75px;
-  }
-  
+   
  #startGame {
 
     color: black;
