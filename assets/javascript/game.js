@@ -30,11 +30,17 @@ var imageElement = document.createElement('image');
 // ---- OnClick Button Section ----
 $("#startGame").click(startGame);
 $("#attack").click(attack);
+$("#resetGame").click(resetGame);
+$("#nextRound").click(nextRound);
 
 function startGame () {
 	resetUI();    			// Step 1 Start game and reset() from ui
 	loadPlayerBoard();		// Step 4 Load player thumbnails on player board
 
+}
+function resetGame () {
+	resetUI();
+	loadPlayerBoard();
 }
 
 function attack () {
@@ -57,7 +63,7 @@ function attack () {
 			$('<div/>').addClass('shown-vanquished pull-left').html(players[j].pix));
 		
 	} else {
-		alert("Your opponent is still alive");
+
 		$('.shown-your-health').remove();
 		$('#your-health-display').append(
 			$('<span/>').addClass('shown-your-health').text(yourHealth));
@@ -81,7 +87,7 @@ function counterAttack () {
 		$('#msg-display').append(
 			$('<span/>').addClass('msg-text pull-right').text("Game over, press 'reset game' to play again"));
 	} else {
-		alert("You have been hit!");
+	
 		$('.shown-health').remove();
 		$('#health-display').append(
 			$('<span/>').addClass('shown-health').text(myHealth));
@@ -89,7 +95,7 @@ function counterAttack () {
 }
 
 function resetOpponentStats() {
-	alert("You are resetting opponents stats now");
+	
 	yourHealth = 0;
 	yourCounter = 0;
 	$('.opponent-display').remove();
@@ -102,7 +108,7 @@ function resetOpponentStats() {
 }
 
 function resetPlayerStats () {
-	alert("You are resetting game stats now");
+	
 	resetUI();
 }
 
@@ -137,6 +143,7 @@ function resetUI () {
 	yourLosses = 0;
 	yourHealth = 0;
 	yourCounter = 0;
+	firstChallenger = 0;
 	$('.shown-picture').remove();
 	$('.opponent-display').remove();
 	$('.shown-vanquished').remove();
@@ -271,10 +278,33 @@ function pickChallengers(ndx) {
 			}
 		}
 			
+	} else {
+		nextRound(ndx);
 	}
 //}	//		
 		
 
+}
+function nextRound (ndx) {
+	firstChallenger++;
+	if (firstChallenger > 2) {
+		for (var i = 0; i < toggle.length; i++) {
+			if (i === ndx) {
+				opponentindx = ndx;
+				yourHealth = Math.floor((Math.random() * 350) + 25);
+				yourCounter = Math.floor((Math.random() * 25) + 1);			
+				$('.shown-your-health').remove();
+				$('.shown-counter').remove();
+				$('.shown-opponent').remove();
+				$('#toggle').remove();
+				$('#opponent-display').append(
+					$('<span/>').addClass('shown-opponent').html(players[i].pix));
+				$('#your-health-display').append(
+					$('<span/>').addClass('shown-your-health').text(yourHealth));
+				$('#counter-display').append(
+					$('<span/>').addClass('shown-counter').text(yourCounter));
+		}
+	}}
 }
 
 // --- END ui ---
