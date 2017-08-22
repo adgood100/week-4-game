@@ -114,6 +114,19 @@ footer {
     -webkit-border-radius:15px;
     border-radius:15px;
 }
+
+#msg-display {
+	float: right;
+	margin: 0 30px 0 30px;
+	background:#e6f9ff;
+    border:1px #6f5a2d solid;
+	width: auto;
+    padding:3pt;	
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+
 #stat-display{
 	color: white;
 	margin: 20px;
@@ -219,6 +232,9 @@ img {
   border-radius: 5px;
   border: 1px solid #6f5a2d;
   padding: 5px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
 }
 .shown-letter {
     border-bottom: 3px #000 solid;
@@ -232,12 +248,17 @@ img {
 #showImage {
 	visibility: visible;
 }
+.shown-stat {
+	color: white;
+	text-align: left;
+}
 .shown-picture {
 /*  width: 38px; */
 /*  height: 38px; */
 /*  border: 1px solid black; */
 	margin-right: 10px;
-  border-radius: 5px;
+	border-radius: 5px;
+	color: white;
 }
 .shown-hint {
 /*    border-bottom: 3px #000 solid; */

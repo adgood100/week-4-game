@@ -14,6 +14,14 @@ var hintPicture = "";
 var heroindx;
 var opponentindx;
 
+//Star Wars Variables
+//var player = {
+//	name: "",
+//	playerRole: "",
+//	baseHealthPoints: (Math.floor((Math.random() * 50) + 275);),
+//	baseAttackPower: (Math.floor((Math.random() * 25) + 175);),
+//	xtremeAttackPower: (xtremeAttackPower + baseAttackPower), 
+//	counterAttackPower: (Math.floor((Math.random() * 16) + 245);)
 //};
 var opponentHP = 0;
 var heroAttackPT = 0;
@@ -36,57 +44,31 @@ function resetGame () {
 		drawWord(gameShownAnswer);    // 3. initialize ui drawWord from ui
 		hideHints();
 }
+//showKeyboard();
 
 //$(document).ready(resetGame);
 var audioElement = document.createElement('audio');
 var imageElement = document.createElement('image');
 
-// ---- OnClick Button Section ----
 $("#startGame").click(startGame);
-$("#attack").click(attack);
+
+//$("#hint").click(drawHints); 
+//$("#shwHint").click(dsplHints); 
 
 function startGame () {
 	resetUI();    			// Step 1 Start game and reset() from ui
+	resetPlayerStats(); 	// Step 2 Reset player stats to zero
+	setPlayerPoints(); 		// Step 3 Allocate player health points, attack power and counter attack power
 	loadPlayerBoard();		// Step 4 Load player thumbnails on player board
-
+	loadPlayerHealth();
 }
 
-function attack () {
-	yourHealth = (yourHealth - myAttack);	
-
-	if (yourHealth <= 0) {
-		myWins++;
-		drawMyWins(myWins);
-		$('.msg-text').remove();
-		yourHealth = 0;
-		yourCounter = 0;
-		resetOpponentStats();
-		var j = opponentindx; 
-		alert("You have defeated your opponent");
-		$('#msg-display').append(
-			$('<span/>').addClass('msg-text pull-right').text("Select a new opponent to continue"));
-		$('#vanquished-display').append (
-			$('<div/>').addClass('shown-picture pull-left').html(players[j].pix));
-		
-	} else {
-		alert("Your opponent is still alive");
-		$('.shown-your-health').remove();
-		$('#your-health-display').append(
-					$('<span/>').addClass('shown-your-health').text(yourHealth));
-	}
-}
-
-function resetOpponentStats() {
+function resetPlayerStats() {
 	alert("You are resetting player stats now");
-	yourHealth = 0;
-	yourCounter = 0;
-	$('.opponent-display').remove();
-	$('.shown-your-health').remove();
-	$('.shown-counter').remove();
-	$('#your-health-display').append(
-		$('<span/>').addClass('shown-your-health').text(yourHealth));
-	$('#counter-display').append(
-		$('<span/>').addClass('shown-counter').text(yourCounter));
+}
+
+function setPlayerPoints () {
+	alert("You are setting player points now");
 }
 
 function win () { 
@@ -139,10 +121,48 @@ function dsplWinnerBoard () {
 	$("img").removeAttr("style");
 }
 
+function dsplHints () {
+	console.log("Entering dsplHints");
+	$("#hint-display").attr( "style", "visibility: visible" ); 
+
+}
+function hideHints () {
+	console.log("Entering dsplHints");
+	$("#hint-display").attr( "style", "visibility: hidden" ); 
+
+}
 // ---
 // --- control ui ---
 // --- BGN ui ---
 
+function drawHead () {
+  $('.draw-area').append( $('<div/>').addClass("body-part head") );
+}
+function drawTorso () {
+  $('.draw-area').append(
+      $('<div/>').addClass("body-part armbox").append(
+          $('<div/>').addClass("body-part torso")));
+  $('.draw-area').append(
+      $('<div/>').addClass("body-part legbox").append(
+          $('<div/>').addClass("body-part pelvis")));
+}
+function drawLeftArm () {
+ $('.armbox').prepend( $('<div/>').addClass("body-part leftarm") );
+}
+function drawRightArm () {
+ $('.armbox').prepend( $('<div/>').addClass("body-part rightarm") );   
+}
+function drawLeftLeg () {
+ $('.legbox').prepend( $('<div/>').addClass("body-part leftleg") );   
+}
+function drawRightLeg() {
+ $('.legbox').prepend( $('<div/>').addClass("body-part rightleg") );   
+}
+var drawSequence = [ drawHead,drawTorso,drawLeftArm,drawRightArm,drawLeftLeg,drawRightLeg ];
+function wrongLetter ( letter ) {
+    $('#wrong-letters').append(
+        $('<span/>').addClass('guessed-letter').text(letter));
+}
 function resetUI () {
     $('.body-part').remove();
     $('.guessed-letter').remove();
@@ -177,7 +197,7 @@ function drawHints( hintValue ) {
 
 }
 function drawMyWins( myWins ) {
-    $('.shown-wins').remove();
+    
 	$('#wins-display').append(
 	    $('<span/>').addClass('shown-wins').text(myWins));
     
@@ -232,68 +252,43 @@ function drawPicture( myPicture ) {
 }
 
 function loadPlayerBoard() {
-	for (var i = 0; i < players.length; i++) {
+    
+	for (var i = 0; i < himgs.length; i++) {
 		$('#picture-display').append (
-			$('<div/>').addClass('shown-picture pull-left').html(players[i].pix));
-		$('#picture-display').append (	
-			$('<span/>').addClass('shown-stat pull-left').html(players[i].name));
+			$('<span/>').addClass('shown-picture pull-left').html(himgs[i]));
 	}
 		
 }
 
-function reloadPlayerBoard(arg) {
+function loadPlayerHealth() {
     
 	for (var i = 0; i < players.length; i++) {
-		if (i != arg) {
-		$('#picture-display').append (
-			$('<div/>').addClass('shown-picture pull-left').html(players[i].pix));
-		$('#picture-display').append (	
-			$('<span/>').addClass('shown-stat pull-left').html(players[i].name));
-	}}
-		
+//		var playerHealthPoints = Math.floor((Math.random() * 250) + 50);
+//		console.log('this is value of playerHealthPoints: ' + playerHealthPoints);
+		$('#stat-display').append (
+		$('<span/>').addClass('shown-picture pull-left').html('<p style:"color: white; font-size: 16px;">HP/AP </p>' + players[i].hp + "/" + players[i].ap));
+	
 }
-
+}
 function pickChallengers(ndx) {
 	firstChallenger++;
 	console.log("value of " + ndx);
-	console.log("value of " + toggle[ndx]);
-	
+	console.log("value of " + toggle[heroindx]);
+	heroindx = ndx;
+	i = ndx;
 //	for (var i = 0; i < toggle.length; i++) { //
 	if (firstChallenger === 1) {
 
 		for (var i = 0; i < toggle.length; i++) {
 			if (i === ndx) {
-				myHealth = Math.floor((Math.random() * 350) + 25);
-				console.log(myHealth);
-				myAttack = Math.floor((Math.random() * 25) + 1);
-				console.log(myAttack);
-				$('.shown-health').remove();
-				$('.shown-attack').remove();
-				$('#hero-display').html(players[i].pix);
-				$('#health-display').append(
-					$('<span/>').addClass('shown-health').text(myHealth));
-				$('#attack-display').append(
-					$('<span/>').addClass('shown-attack').text(myAttack));
-				$('shown-stat').remove();
-			//	reloadPlayerBoard(ndx);
+				$('#hero-display').html(toggle[i]);
 			}
 		}	 
 	} else if (firstChallenger === 2) {
 		
 		for (var i = 0; i < toggle.length; i++) {
 			if (i === ndx) {
-				opponentindx = ndx;
-				yourHealth = Math.floor((Math.random() * 350) + 25);
-				yourCounter = Math.floor((Math.random() * 25) + 1);			
-				$('.shown-your-health').remove();
-				$('.shown-counter').remove();
-				$('#opponent-display').html(players[i].pix);
-				$('#your-health-display').append(
-					$('<span/>').addClass('shown-your-health').text(yourHealth));
-				$('#counter-display').append(
-					$('<span/>').addClass('shown-counter').text(yourCounter));
-				$('shown-stat').remove();
-			//	reloadPlayerBoard(ndx);
+				$('#opponent-display').html(toggle[i]);
 			}
 		}
 			
@@ -336,18 +331,14 @@ var words = [
 			{name:'Darth Vadr', hp:87, ap:123}]
 
 var players = [
-			{pix:' <img id="toggle" onclick="pickChallengers(0)" src="assets/images/reyskywalker2.png" style="width: 48; height: 48; "> ', 
-			name:'Rey', hp:169, ap:272},
-			{pix:' <img id="toggle" onclick="pickChallengers(1)" src="assets/images/jynerso.png" style="width: 48; height: 48;" > ', 
-			name:'Jyn', hp:143, ap:212}, 
-			{pix:' <img id="toggle" onclick="pickChallengers(2)" src="assets/images/finn.png" style="width: 48; height: 48;" > ', 
-			name:'Finn', hp:196, ap:259}, 
-			{pix:' <img id="toggle" onclick="pickChallengers(3)" src="assets/images/stormtrooper.jpg" style="width: 48; height: 48;" > ', 
-			name:'Storm Trooper', hp:110, ap:226}, 
-			{pix:' <img id="toggle" onclick="pickChallengers(4)" src="assets/images/supremeleadersnoke.png" style="width: 48; height: 48;" > ', 
-			name:'Supreme Leader', hp:154, ap:78}, 
-			{pix:' <img id="toggle" onclick="pickChallengers(5)" src="assets/images/generalhux.png" style="width: 48; height: 48;" > ', 
-			name:'General Hux', hp:184, ap:165} 
+			{name:'Rey Skywalker', pix:' <img id="toggle" onclick="pickChallengers(0)" src="assets/images/reyskywalker.png" style="width: 48; height: 48; "> ', hp:169, ap:272},
+			{name:'Jyn Erso', pix:' <img id="toggle" onclick="pickChallengers(1)" src="assets/images/jynerso.png" style="width: 48; height: 48;" > ', hp:143, ap:212}, 
+			{name:'Finn', pix:' <img id="toggle" onclick="pickChallengers(2)" src="assets/images/finn.png" style="width: 48; height: 48;" > ', hp:196, ap:52}, 
+			{name:'Poe Dameron', pix:' <img id="toggle" onclick="pickChallengers(3)" src="assets/images/PoeDameron180.jpg" style="width: 48; height: 48;" > ', hp:143, ap:73}, 
+			{name:'Hans Solo', pix:' <img id="toggle" onclick="pickChallengers(4)" src="assets/images/hanssolo.png" style="width: 48; height: 48;" > ', hp:259, ap:156}, 
+			{name:'Storm Trooper', pix:' <img id="toggle" onclick="pickChallengers(5)" src="assets/images/stormtrooper.jpg" style="width: 48; height: 48;" > ', hp:110, ap:226}, 
+			{name:'Supreme Leader Snoke', pix:' <img id="toggle" onclick="pickChallengers(6)" src="assets/images/supremeleadersnoke.png" style="width: 48; height: 48;" > ', hp:154, ap:78}, 
+			{name:'General Hux', pix:' <img id="toggle" onclick="pickChallengers(7)" src="assets/images/generalhux.png" style="width: 48; height: 48;" > ', hp:184, ap:165} 
 			]
 
 var healthPoints = ['<p style="color: white; font-size: 16px;">Health Points: </p>', 
