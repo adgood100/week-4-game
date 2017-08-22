@@ -13,6 +13,7 @@ var hintValue = "";
 var hintPicture = "";
 var heroindx;
 var opponentindx;
+var playerndx;
 
 //};
 var opponentHP = 0;
@@ -215,27 +216,37 @@ function drawPicture( myPicture ) {
 function loadPlayerBoard() {
 	for (var i = 0; i < players.length; i++) {
 		$('#picture-display').append (
-			$('<div/>').addClass('shown-picture pull-left').html(players[i].pix));
+			$('<div/>').addClass('shown-picture challengers pull-left').html(players[i].pix));
 		$('#picture-display').append (	
-			$('<span/>').addClass('shown-stat pull-left').html(players[i].name));
+			$('<span/>').addClass('shown-stat challengers pull-left').html(players[i].name));
 	}
 		
 }
 
 function reloadPlayerBoard(arg) {
-    
+	checkndx();
+	$('.challengers').remove();
 	for (var i = 0; i < players.length; i++) {
 		if (i != arg) {
 		$('#picture-display').append (
-			$('<div/>').addClass('shown-picture pull-left').html(players[i].pix));
+			$('<div/>').addClass('shown-picture challengers pull-left').html(players[i].pix));
 		$('#picture-display').append (	
-			$('<span/>').addClass('shown-stat pull-left').html(players[i].name));
+			$('<span/>').addClass('shown-stat challengers pull-left').html(players[i].name));
 	}}
 		
 }
 
+function myFunction() {
+    document.getElementById("demo").innerHTML = ages.filter(checkAdult);
+}
+
+function checkndx(players) {
+	return players != (playerndx || opponentindx);
+}
+
 function pickChallengers(ndx) {
 	firstChallenger++;
+
 	console.log("value of " + ndx);
 	console.log("value of " + toggle[ndx]);
 	
@@ -244,6 +255,7 @@ function pickChallengers(ndx) {
 
 		for (var i = 0; i < toggle.length; i++) {
 			if (i === ndx) {
+				playerndx = ndx;
 				myHealth = Math.floor((Math.random() * 350) + 25);
 				console.log(myHealth);
 				myAttack = Math.floor((Math.random() * 25) + 1);
@@ -255,13 +267,13 @@ function pickChallengers(ndx) {
 					$('<span/>').addClass('shown-health').text(myHealth));
 				$('#attack-display').append(
 					$('<span/>').addClass('shown-attack').text(myAttack));
-				$('shown-stat').remove();
-			//	reloadPlayerBoard(ndx);
+				if (i === ndx) {   $('.challenger').remove();}
+				reloadPlayerBoard(ndx);
 			}
 		}	 
 	} else if (firstChallenger === 2) {
 		
-		for (var i = 0; i < toggle.length; i++) {
+		for (var i = 0; i < players.length; i++) {
 			if (i === ndx) {
 				opponentindx = ndx;
 				yourHealth = Math.floor((Math.random() * 350) + 25);
@@ -273,8 +285,8 @@ function pickChallengers(ndx) {
 					$('<span/>').addClass('shown-your-health').text(yourHealth));
 				$('#counter-display').append(
 					$('<span/>').addClass('shown-counter').text(yourCounter));
-				$('shown-stat').remove();
-			//	reloadPlayerBoard(ndx);
+				if (i === ndx) {   $('.challenger').remove();}
+				reloadPlayerBoard(ndx);
 			}
 		}
 			
@@ -287,8 +299,9 @@ function pickChallengers(ndx) {
 }
 function nextRound (ndx) {
 	firstChallenger++;
+	reloadPlayerBoard();
 	if (firstChallenger > 2) {
-		for (var i = 0; i < toggle.length; i++) {
+		for (var i = 0; i < players.length; i++) {
 			if (i === ndx) {
 				opponentindx = ndx;
 				yourHealth = Math.floor((Math.random() * 350) + 25);
@@ -296,7 +309,6 @@ function nextRound (ndx) {
 				$('.shown-your-health').remove();
 				$('.shown-counter').remove();
 				$('.shown-opponent').remove();
-				$('#toggle').remove();
 				$('#opponent-display').append(
 					$('<span/>').addClass('shown-opponent').html(players[i].pix));
 				$('#your-health-display').append(
